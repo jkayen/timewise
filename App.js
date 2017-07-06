@@ -1,14 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>timewise.</Text>
-      </View>
-    );
-  }
+import Home from './src/pages/Home';
+
+export default function App() {
+  return (
+    <Text>This is working</Text>
+  );
 }
 
 const styles = StyleSheet.create({
