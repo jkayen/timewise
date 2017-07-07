@@ -1,13 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { NativeRouter, Route, Link } from 'react-router-native';
 
 import Home from './src/scenes/Home';
+import Prompt from './src/scenes/Prompt';
 
 export default function App() {
   return (
-      <View style={styles.container}>
-        <Home />
+    <NativeRouter>
+      <View>
+        <Route exact path ="/" component={Home} />
+        <Route path = "/prompt" component={Prompt} />
       </View>
+    </NativeRouter>
   );
 }
 
@@ -19,3 +24,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+// <View style={styles.container}>

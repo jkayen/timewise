@@ -23,6 +23,10 @@
     "native-base": "^2.2.0",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.45.1",
-    "react-native-easy-grid": "^0.1.13"
+    "react-native-easy-grid": "^0.1.13",
+    "react-router": "^4.1.1",
+    "react-router-native": "^4.1.1",
+    "react-router-navigation": "^1.0.0-rc.2",
+    "yarn": "^0.27.5"
   }
 }
