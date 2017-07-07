@@ -4,6 +4,7 @@ import { NativeRouter, Route, Link } from 'react-router-native';
 
 import Home from './src/scenes/Home';
 import Prompt from './src/scenes/Prompt';
+import Analysis from './src/scenes/Analysis';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <View>
         <Route exact path ="/" component={Home} />
         <Route path = "/prompt" component={Prompt} />
+        <Route path = "/analysis" component={Analysis} />
       </View>
     </NativeRouter>
   );

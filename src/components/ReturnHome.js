@@ -2,10 +2,10 @@ import React from 'react';
 import { Text } from 'react-native';
 import { Link } from 'react-router-native';
 
-export default function AnalysisButton() {
+export default function ReturnHome() {
   return (
-    <Link to={'/analysis'}>
-      <Text>Analysis</Text>
+    <Link to={'/'}>
+      <Text>Okay, got it.</Text>
     </Link>
   )
 }
