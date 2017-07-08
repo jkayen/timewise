@@ -5,7 +5,7 @@ export default function SettingsButton() {
   return (
     <Button
       title="Settings"
-      onPress={()=>"success"}
+      onPress={()=>console.log("success")}
     />
   )
 }
