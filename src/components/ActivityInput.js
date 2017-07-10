@@ -16,7 +16,7 @@ export default class ActivityInput extends React.Component {
         <Text>I am currently...</Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={text => this.setState({text})}
           value={this.state.text}
         />
         <FlatList

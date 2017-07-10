@@ -1,14 +1,13 @@
 import React from 'react';
-import { Text, Button } from 'react-native';
-import { Link } from 'react-router-native';
+import { Button } from 'react-native';
+
+import createNewEvent from '../database/createNewEvent';
 
 export default function SubmitButton() {
   return (
     <Button
       title="Submit"
-      onPress={()=>console.log('setdata')}
+      onPress={() => createNewEvent('watching tv')}
     />
   )
 }
-
-// NEED TO REMOVE LINK FROM THIS AND MAKE A SEPARATE BUTTON TO GO HOME AFTER SUBMITTING ACTIVITY
