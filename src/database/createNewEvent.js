@@ -15,17 +15,21 @@ export default function createNewEvent (activityName, newEventStartTime = Date.n
   .then(() => {
     return AsyncStorage.getItem('currentEvent')
   })
+  // get eventObj of the currentEvent only if there is one
   .then(eventId => {
-    // create currentEvent key with newly created event if none exists
-    if (!eventId) {
-      AsyncStorage.setItem('currentEvent', JSON.stringify(newEventStartTime));
-      return undefined;
-    } else {
-      // otherwise, access previously current event
+    // // create currentEvent key with newly created event if none exists
+    // if (!eventId) {
+    //   AsyncStorage.setItem('currentEvent', JSON.stringify(newEventStartTime));
+    //   return undefined;
+    // } else {
+    //   // otherwise, access previously current event
+    //   return AsyncStorage.getItem(eventId);
+    // }
+    if (eventId) {
       return AsyncStorage.getItem(eventId);
     }
   })
-  // update the nextEvent of the just completed event if one existed
+  // update the nextEvent of the just completed event if there was a preceding event
   .then(currentEventObj => {
     if (currentEventObj) {
       let currentEventName = JSON.stringify(JSON.parse(currentEventObj).start);
@@ -42,7 +46,7 @@ export default function createNewEvent (activityName, newEventStartTime = Date.n
   .then(currentEventId => {
     return AsyncStorage.getItem(currentEventId)
   })
-  // calculate duration of that event and add it to the activities array
+  // calculate duration of that event and add it to the activities array, only if something
   .then(currentEventObj => {
     if (currentEventObj) {
       let updatedCurrentEventObjParsed = JSON.parse(currentEventObj);
@@ -51,7 +55,7 @@ export default function createNewEvent (activityName, newEventStartTime = Date.n
       return AsyncStorage.getItem('activities')
       .then(activitiesObj => {
         let activitiesObjParsed = JSON.parse(activitiesObj);
-        activitiesObjParsed.activityId += addedTime;
+        activitiesObjParsed[activityId] += addedTime;
         let updatedActivitiesObj = JSON.stringify(activitiesObjParsed);
         return AsyncStorage.setItem('activities', updatedActivitiesObj);
       })

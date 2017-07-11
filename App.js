@@ -1,3 +1,9 @@
+if (__DEV__) {
+  require('./src/dev/ReactotronConfig');
+  const Reactotron = require('reactotron-react-native').default;
+  Reactotron.log('***Reactotron reconnected***');
+}
+
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NativeRouter, Route, Link } from 'react-router-native';
@@ -15,7 +21,7 @@ export default function App() {
         <Route path = "/analysis" component={Analysis} />
       </View>
     </NativeRouter>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
