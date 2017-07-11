@@ -1,9 +1,9 @@
-import { AsyncStorage } from 'react-native';
+import getActivities from './getActivities';
 
 // get the complete list of activities that have been listed and return in them as an array of the activity names in alphabetical order
 
-export default function grabAllActivities() {
-  return AsyncStorage.getItem('activities')
+export default function getActivitiesAlphabetized() {
+  return getActivities()
   .then(activitiesObj => {
     if (activitiesObj) {
       return  Object.keys(JSON.parse(activitiesObj)).sort();

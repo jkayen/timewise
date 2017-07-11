@@ -1,21 +1,32 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 
-import activitiesByTime from '../utilities/duration';
+import getActivitiesByTime from '../database/helpers/getActivitiesByTime';
 
-export default function OrderedActivities() {
-  // call activitiesByTime().then(arr => arr[0].name)
-  const activityData = activitiesByTime();
-  const totalTime = activityData.reduce((total, activity) => total + activity.duration, 0)
-  return (
-    <View>
-      <Text>Here's how the rest of your time stacks up:</Text>
-      <FlatList
-        data={activityData}
-        renderItem={({item}) => <Text>{item.name}: {Math.floor(item.duration / totalTime * 100)}%</Text>}
-      />
-    </View>
-  )
+export default class OrderedActivities extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      activitiesList: []
+    }
+  }
+  componentWillMount() {
+    getActivitiesByTime()
+    .then(activitiesList => {
+      this.setState({activitiesList})
+    })
+  }
+  render() {
+    return (
+      <View>
+        <Text>Here's how the rest of your time stacks up:</Text>
+        <FlatList
+          data={this.state.activitiesList}
+          renderItem={({item}) => <Text>{item.activityName}: {item.percentOfTime}%</Text>}
+        />
+      </View>
+    )
+  }
 }
 
 

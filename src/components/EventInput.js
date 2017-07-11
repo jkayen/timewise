@@ -4,19 +4,19 @@ import React from 'react';
 import { View, Text, Button, TextInput, Picker } from 'react-native';
 
 import addToDatabase from '../database/addToDatabase';
-import grabAllActivities from '../utilities/grabAllActivities';
+import getActivitiesAlphabetized from '../database/helpers/getActivitiesAlphabetized';
 
 export default class EventInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventInput: 'Enter a new activity',
+      eventInput: '',
       activities: []
     }
     this.generateList = this.generateList.bind(this);
   }
   generateList() {
-    grabAllActivities()
+    getActivitiesAlphabetized()
     .then(activitiesList => {
       if (activitiesList) {
         this.setState({activities: activitiesList})
@@ -34,6 +34,7 @@ export default class EventInput extends React.Component {
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={eventInput => this.setState({eventInput})}
           value={this.state.eventInput}
+          placeholder= "Enter/Choose an activity."
         />
 
         <Picker
