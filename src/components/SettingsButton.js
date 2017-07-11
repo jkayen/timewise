@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, AsyncStorage } from 'react-native';
+
 
 export default function SettingsButton() {
   return (
     <Button
       title="Settings"
-      onPress={()=>console.log("success")}
+      onPress={()=>AsyncStorage.clear()}
     />
   )
 }

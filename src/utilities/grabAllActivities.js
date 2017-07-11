@@ -5,7 +5,8 @@ import { AsyncStorage } from 'react-native';
 export default function grabAllActivities() {
   return AsyncStorage.getItem('activities')
   .then(activitiesObj => {
-    let activitiesList = Object.keys(JSON.parse(activitiesObj)).sort();
-    return activitiesList;
+    if (activitiesObj) {
+      return  Object.keys(JSON.parse(activitiesObj)).sort();
+    }
   })
 }

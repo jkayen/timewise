@@ -1,7 +1,9 @@
+// text input and scroll with options and submit to database
+
 import React from 'react';
 import { View, Text, Button, TextInput, Picker } from 'react-native';
 
-import createNewEvent from '../database/createNewEvent';
+import addToDatabase from '../database/addToDatabase';
 import grabAllActivities from '../utilities/grabAllActivities';
 
 export default class EventInput extends React.Component {
@@ -11,16 +13,14 @@ export default class EventInput extends React.Component {
       eventInput: 'Enter a new activity',
       activities: []
     }
-    this.submitEvent = this.submitEvent.bind(this);
     this.generateList = this.generateList.bind(this);
-  }
-  submitEvent() {
-    createNewEvent(this.state.eventInput)
   }
   generateList() {
     grabAllActivities()
     .then(activitiesList => {
-      this.setState({activities: activitiesList});
+      if (activitiesList) {
+        this.setState({activities: activitiesList})
+      }
     })
   }
   componentDidMount() {
@@ -55,7 +55,7 @@ export default class EventInput extends React.Component {
 
         <Button
           title="Submit"
-          onPress={() => createNewEvent(this.state.eventInput)}
+          onPress={() => addToDatabase(this.state.eventInput)}
         />
       </View>
     )
