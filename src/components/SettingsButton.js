@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button, AsyncStorage } from 'react-native';
-
+import { Text } from 'react-native';
+import { Link } from 'react-router-native';
 
 export default function SettingsButton() {
   return (
-    <Button
-      title="Settings"
-      onPress={()=>AsyncStorage.clear()}
-    />
+    <Link to={'/settings'}>
+      <Text>Settings</Text>
+    </Link>
   )
 }

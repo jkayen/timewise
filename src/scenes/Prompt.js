@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Time from '../components/Time';
 import EventInput from '../components/EventInput';
 
-import ReturnHomeFromPrompt from '../components/ReturnHomeFromPrompt';
+import HomeButton from '../components/HomeButton';
 
 export default function Prompt() {
   return (
@@ -13,7 +13,7 @@ export default function Prompt() {
       <Header />
       <Time />
       <EventInput />
-      <ReturnHomeFromPrompt />
+      <HomeButton />
     </View>
   )
 }

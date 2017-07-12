@@ -1,10 +1,22 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
+
+import getCurrentEvent from '../database/helpers/getCurrentEvent';
+import timeParser from '../utilities/timeParser';
 
 export default class Time extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = {
+      currentTime: new Date(),
+      startTime: 0
+    };
+  }
+  componentWillMount() {
+    getCurrentEvent()
+    .then(startTime => {
+      this.setState({startTime})
+    })
   }
   componentDidMount() {
     this.timerID = setInterval(
@@ -17,12 +29,18 @@ export default class Time extends React.Component {
   }
   tick() {
     this.setState({
-      date: new Date()
+      currentTime: new Date()
     });
   }
   render() {
     return (
-      <Text>It is {this.state.date.toLocaleTimeString()}.</Text>
+      <View>
+        {this.state.startTime ? (
+          <Text>It's been {timeParser(this.state.startTime, this.state.currentTime)}.</Text>
+        ) : (
+          <Text>It is {this.state.currentTime.toLocaleTimeString()}.</Text>
+        )}
+      </View>
     )
   }
 }
